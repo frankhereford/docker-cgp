@@ -10,15 +10,13 @@ RUN apt-get update && apt-get install -y \
       rm -rf /var/tmp/* && \
       docker-php-ext-install json
 
-ENV CGP_VERSION b24eeac
 ENV URL_PREFIX /
 
 RUN a2enmod rewrite
 RUN rm -rf /var/www/html
 WORKDIR /usr/src
-RUN git clone https://github.com/pommi/CGP.git && \
+RUN git clone https://github.com/frankhereford/CGP.git  && \
     cd CGP && \
-    git checkout ${CGP_VERSION} && \
     rm -rf .git
 WORKDIR /
 COPY config.local.php /usr/src/CGP/conf/
